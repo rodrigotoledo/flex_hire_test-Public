@@ -1,25 +1,15 @@
 import Link from 'next/link';
 import MockJob from '@/lib/mock_job';
-
-const JOBS_TITLE = 'Flexhire Jobs';
-const BACK_TO_MAIN_PAGE = 'Back to Main Page';
-const PHONE_LABEL = 'Phone';
-const UPDATED_AT_LABEL = 'Last Sync';
-const STATUS_LABEL = 'Status';
-const NO_JOBS_OBTAINED_LABEL = 'No Jobs Obtained';
-const HIRING_MANAGER_LABEL = 'Hiring Manager';
-const COMPANY_LABEL = 'Company';
-const JOB_TITLE_LABEL = 'Job Title';
-const CONTRACT_REQUESTS_LABEL = 'Contract Requests';
-const WITHOUT_CONTRACTS_LABEL = 'Without Contracts';
-const SCREENING_QUESTIONS_LABEL = 'Screening Questions';
-const CODE_TEST_LABEL = 'Code Test';
-const DATA_NOT_AVAILABLE_TITLE = 'Data Not Available';
-const DATA_NOT_AVAILABLE_DESCRIPTION = 'Data for jobs is currently unavailable. Please check the source or try again later.';
-const REFRESH_LABEL = 'Refresh';
-
+import graphqlQuery from '@/lib/api/graphqlQuery';
+graphqlQuery
 async function Jobs() {
   const jobs = await MockJob.fakeData();
+  try {
+    const { jobsData } = await graphqlQuery();
+  } catch (error) {
+    console.error('TODO: I have problems to get data in the api endpoint:', error);
+    const jobsData = false;
+  }
   
   return (
     <>
@@ -83,3 +73,20 @@ async function Jobs() {
 }
 
 export default Jobs;
+
+const JOBS_TITLE = 'Flexhire Jobs';
+const BACK_TO_MAIN_PAGE = 'Back to Main Page';
+const PHONE_LABEL = 'Phone';
+const UPDATED_AT_LABEL = 'Last Sync';
+const STATUS_LABEL = 'Status';
+const NO_JOBS_OBTAINED_LABEL = 'No Jobs Obtained';
+const HIRING_MANAGER_LABEL = 'Hiring Manager';
+const COMPANY_LABEL = 'Company';
+const JOB_TITLE_LABEL = 'Job Title';
+const CONTRACT_REQUESTS_LABEL = 'Contract Requests';
+const WITHOUT_CONTRACTS_LABEL = 'Without Contracts';
+const SCREENING_QUESTIONS_LABEL = 'Screening Questions';
+const CODE_TEST_LABEL = 'Code Test';
+const DATA_NOT_AVAILABLE_TITLE = 'Data Not Available';
+const DATA_NOT_AVAILABLE_DESCRIPTION = 'Data for jobs is currently unavailable. Please check the source or try again later.';
+const REFRESH_LABEL = 'Refresh';

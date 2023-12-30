@@ -1,8 +1,15 @@
 import Link from 'next/link';
 import MockProfile from '@/lib/mock_profile';
+import graphqlQuery from '@/lib/api/graphqlQuery';
 
 async function Profile() {
   const profile = await MockProfile.fakeData()
+  try {
+    const { profileData } = await graphqlQuery();
+  } catch (error) {
+    console.error('TODO: I have problems to get data in the api endpoint:', error);
+    const profileData = false;
+  }
   return (
     <>
       <>
@@ -41,7 +48,7 @@ async function Profile() {
                   </ul>
                 )}
               </div>
-              <h3 className="text-2xl font-semibold mt-4 text-left">{EMAIL_SUBSCRIPTIONS_TITLE}: <span className="text-sm">{profile.data.currentUser.emailSubscriptions.join(', ')}</span></h3>
+              <h3 className="text-2xl font-semibold mt-4 text-left">{EMAIL_SUBSCRIPTIONS_TITLE}: <span className="text-sm">{profile.data.currentUser.emailSubscriptions.map((subscription) => subscription.subscriptionName).join(', ')}</span></h3>
               <div className="text-left">
                 <h3 className="text-2xl font-semibold mt-4">{ANSWERS_TITLE}</h3>
                 <ul className="list-none pl-6 mt-2">

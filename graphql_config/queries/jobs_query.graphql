@@ -1,0 +1,24 @@
+# Arquivo GraphQL
+query Jobs {
+  data {
+    currentUser {
+      id
+      name
+      avatarUrl
+      phone
+      userSkills {
+        experience
+        skill {
+          name
+        }
+      }
+      status
+      emailSubscriptions {
+        subscriptionName
+      }
+      answers {
+        optimizedUrl
+      }
+    }
+  }
+}
