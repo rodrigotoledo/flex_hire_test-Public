@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import MockProfile from '@/lib/mock_profile';
 
 async function Profile() {
@@ -24,7 +23,7 @@ async function Profile() {
               </div>
               <h2 className="text-2xl font-bold">{profile.data.currentUser.name}</h2>
               <p className="text-gray-600">{PHONE}: {profile.data.currentUser.phone}</p>
-              <p className="text-gray-600">{UPDATED_AT}: {profile.updated_at}</p>
+              <p className="text-gray-600">{UPDATED_AT}: {profile.updatedAt}</p>
               <p className="text-sky-500">{STATUS}: {profile.data.currentUser.status}</p>
             </div>
             <div className="bg-white rounded-md p-4 md:w-1/2">
@@ -73,7 +72,7 @@ const PROFILE_TITLE = 'Profile';
 const BACK_TO_MAIN_PAGE = 'Back to Main Page';
 const PROFILE_ALT = 'Profile Image';
 const PHONE = 'Phone';
-const UPDATED_AT = 'Updated At';
+const UPDATED_AT = 'Last Sync';
 const STATUS = 'Status';
 const SKILLS_TITLE = 'Skills';
 const NO_SKILLS_OBTAINED = 'No Skills Obtained';
