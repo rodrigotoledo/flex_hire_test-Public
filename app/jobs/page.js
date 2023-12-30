@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import MockJob from '@/lib/mock_job';
 import graphqlQuery from '@/lib/api/graphqlQuery';
-graphqlQuery
+
 async function Jobs() {
   const jobs = await MockJob.fakeData();
   try {
